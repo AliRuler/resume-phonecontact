@@ -1,12 +1,11 @@
 import { useState, React} from 'react';
-import Table from '../../Table/Table'  // new
-import {getData, columns} from "../../../db"
+import Table from '../../components/Table/Table'  // new
+import {getData, columns} from "../../db"
 
-const Home = (newcontact) => {
+const Home = () => {
     const [data, setdata] = useState(getData);
-    if(newcontact)setdata([...data,newcontact]);
   return (
-    <div>
+    <div className='container mx-auto'>
         <Table columns={columns} data={data} setdata={setdata} />
     </div>
   )
