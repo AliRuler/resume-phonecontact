@@ -3,10 +3,8 @@ import React from "react";
 function Form() {
   const RegContact = (e)=>{
     e.preventDefault();
-    const formData = new FormData(e.target);
-    const data = Object.fromEntries(formData.entries());
-    
-
+    // const formData = new FormData(e.target);
+    // const data = Object.fromEntries(formData.entries());
   }
   return (
     <div className='container flex flex-col justify-center mx-auto pt-16'>
@@ -147,9 +145,9 @@ function Form() {
           </label>
         </div>
         <div className="mb-6">
-          <span className="text-gray-700">Status</span>
-          <div className="mt-2">
-            <label className="text-sm text-gray-800 dark:text-gray-600 top-3">
+          <span className="text-gray-700">Status: </span>
+          <div className="mt-2 inline">
+            <label className="text-sm text-gray-800 dark:text-gray-600 top-3 ml-6">
               <input
                 type="radio"
                 className="form-radio"
@@ -158,7 +156,7 @@ function Form() {
               />
               <span className="ml-2">Public</span>
             </label>
-            <label className="text-sm text-gray-800 dark:text-gray-600 top-3 ml-2">
+            <label className="text-sm text-gray-800 dark:text-gray-600 top-3 ml-6">
               <input
                 type="radio"
                 className="form-radio"

@@ -1,7 +1,7 @@
-import { createBrowserRouter } from "react-router-dom";
+import {createBrowserRouter} from "react-router-dom";
 import Home from "../Pages/Home/Home";
-import Form from "../components/Form/Form";
 import {Layout} from "../components/Layout";
+import NewContact from "../Pages/Contacts/NewContact";
 
 const router = createBrowserRouter([
     {
@@ -14,7 +14,7 @@ const router = createBrowserRouter([
         },
         {
           path: "Register",
-          element: <Form />,
+          element: <NewContact />,
         },
         // {
         //   path: "categories/:categoryID",

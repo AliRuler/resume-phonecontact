@@ -4,7 +4,6 @@ import { ChevronDoubleLeftIcon, ChevronLeftIcon, ChevronRightIcon, ChevronDouble
 import { Button, PageButton } from '../shared/Button'
 import { classNames } from '../shared/Utils'
 import { SortIcon, SortUpIcon, SortDownIcon } from '../shared/Icons'
-import { useState } from 'react';
 
 // Define a default UI for filtering
 function GlobalFilter({
@@ -74,19 +73,24 @@ export function SelectColumnFilter({
   )
 }
 
-export function StatusPill({value,row,setdata,data}) {
-  const status = value ? value.toLowerCase() : "unknown";
+export function StatusPill({row,data}) {
+  // const changeValue = ()=>{
+  //   data[row.id].status==="PUBLIC"?data[row.id].status="FAVORITE":data[row.id].status="PUBLIC";
+  //   dispatch({type: contactsAction.Edit, payload: data[row.id]});
+  //   cell.render("Cell");
+  // }
   return (
     <span
       className={
         classNames(
           "px-3 py-1 uppercase leading-wide font-bold text-xs rounded-full shadow-sm",
-          status.startsWith("public") ? "bg-blue-100 text-blue-800" : null,
-          status.startsWith("favorite") ? "bg-green-100 text-green-800" : null,
+          data[row.id].status.startsWith("PUBLIC") ? "bg-blue-100 text-blue-800" : null,
+          data[row.id].status.startsWith("FAVORITE") ? "bg-green-100 text-green-800" : null,
         )
       }
+      // onClick={changeValue} 
     >
-      {status}
+      {data[row.id].status}
     </span>
   );
 };
@@ -105,8 +109,9 @@ export function AvatarCell({ value, column, row }) {
   )
 }
 
-function Table({ columns, data, setdata}) {
+function Table({ columns,data, dispath}) {
   // Use the state and functions returned from useTable to build your UI
+
   const {
     getTableProps,
     getTableBodyProps,
@@ -131,7 +136,7 @@ function Table({ columns, data, setdata}) {
   } = useTable({
     columns,
     data,
-    setdata
+    dispath
   },
     useFilters, // useFilters!
     useGlobalFilter,
@@ -210,7 +215,7 @@ function Table({ columns, data, setdata}) {
                             >
                               {cell.column.Cell.name === "defaultRenderer"
                                 ? <div className="text-sm text-gray-500">{cell.render('Cell')}</div>
-                                : cell.render('Cell',{setdata})
+                                : cell.render('Cell',{data})
                               }
                             </td>
                           )

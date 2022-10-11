@@ -1,14 +1,14 @@
-import { useState, React} from 'react';
+import {useContext, React} from 'react';
 import Table from '../../components/Table/Table'  // new
-import {getData, columns} from "../../db"
+import {columns} from "../../db"
+import { ContactsContext } from '../../context/contacts/contactsProvider';
 
 const Home = () => {
-    const [data, setdata] = useState(getData);
+    const { contacts, dispatch } = useContext(ContactsContext);
   return (
     <div className='container mx-auto'>
-        <Table columns={columns} data={data} setdata={setdata} />
+        <Table columns={columns} data={contacts} dispath={dispatch} />
     </div>
   )
 }
-
 export default Home
