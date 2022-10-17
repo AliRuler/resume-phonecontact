@@ -1,14 +1,15 @@
-function ContactsReducer(state=[],action){
+function ContactsReducer(state,action){
     const {type, payload} = action;
     switch(type){
         case contactsAction.Add:{
-            const [item,index] = state.find(p => p.id === payload.id);
-            if (item){
-                throw new Error ("This Contat is Already exist");
-            }
-            else{
+            console.log(state)
+            // const [item,index] = state.find(p => p.name === payload.name);
+            // if (item){
+            //     throw new Error ("This Contat is Already exist");
+            // }
+            // else{
                 return(state = [...state,payload]);
-            }
+            // }
         }
         case contactsAction.Edit:{
             return(state.map(item => item.id === payload.id? payload: item));

@@ -1,23 +1,59 @@
-import React from "react";
+import {useState, useContext, React} from "react";
+import {ContactsContext} from "../../context/contacts/contactsProvider";
+import { contactsAction } from "../../context/contacts/contacts.reducer";
 
 function Form() {
-  const RegContact = (e)=>{
-    e.preventDefault();
-    // const formData = new FormData(e.target);
-    // const data = Object.fromEntries(formData.entries());
+  const {contacts, dispatch} = useContext(ContactsContext);
+  const [handleForm, sethandleForm] = useState({
+    fname:[],
+    lname:[],
+    city:[],
+    Email:[],
+    age:[],
+    phone:[],
+    addr:[],
+    role:[],
+    status:"Public"
+  });
+
+  const handleChange = (e) =>{
+    sethandleForm(handleForm[e.target.name] = [handleForm[e.target.name],[e.target.value]]);
   }
+
+  const handleSubmit = (e) =>{
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const newcontact = Object.fromEntries(formData.entries());
+    console.log(newcontact);
+    console.log(handleForm);
+    dispatch({
+      "type":contactsAction.Add,
+      "payload":newcontact
+    });
+  }
+
+  const handleradiochange = (e) =>{
+    console.log(e.target.value);
+    console.log(e.target.checked);
+    if (e.target.checked){
+      sethandleForm({...handleForm, "status":e.target.value});
+    }
+  }
+
   return (
     <div className='container flex flex-col justify-center mx-auto pt-16'>
-      <form onClick={()=>RegContact}>
+      <form onSubmit={handleSubmit}>
         <div className="grid md:grid-cols-2 md:gap-6">
           <div className="relative z-0 mb-6 w-full group">
             <input
               type="text"
-              name="floating_first_name"
-              id="floating_first_name"
+              name="fname"
+              id="fname"
               className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-              placeholder=" "
+              placeholder=""
               required=""
+              value={handleForm.fname}
+              onChange= {handleChange}
             />
             <label
               htmlFor="floating_first_name"
@@ -29,11 +65,13 @@ function Form() {
           <div className="relative z-0 mb-6 w-full group">
             <input
               type="text"
-              name="floating_last_name"
-              id="floating_last_name"
+              name="lname"
+              id="lname"
               className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-              placeholder=" "
+              placeholder=""
               required=""
+              value={handleForm.lname}
+              onChange= {handleChange}
             />
             <label
               htmlFor="floating_last_name"
@@ -48,11 +86,13 @@ function Form() {
           <div className="relative z-0 mb-6 w-full group">
             <input
               type="text"
-              name="floating_City"
-              id="floating_City"
+              name="city"
+              id="city"
               className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=" "
               required=""
+              value={handleForm.city}
+              onChange= {handleChange}
             />
             <label
               htmlFor="floating_City"
@@ -64,11 +104,13 @@ function Form() {
           <div className="relative z-0 mb-6 w-full group">
             <input
               type="email"
-              name="floating_email"
-              id="floating_email"
+              name="email"
+              id="email"
               className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=" "
               required=""
+              value={handleForm.Email}
+              onChange= {handleChange}
             />
             <label
               htmlFor="floating_email"
@@ -80,11 +122,13 @@ function Form() {
           <div className="relative z-0 mb-6 w-full group">
             <input
               type="age"
-              name="floating_age"
-              id="floating_age"
+              name="age"
+              id="age"
               className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=" "
               required=""
+              value={handleForm.age}
+              onChange= {handleChange}
             />
             <label
               htmlFor="floating_age"
@@ -97,11 +141,13 @@ function Form() {
             <input
               type="tel"
               pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-              name="floating_phone"
-              id="floating_phone"
+              name="phone"
+              id="phone"
               className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=" "
               required=""
+              value={handleForm.phone}
+              onChange= {handleChange}
             />
             <label
               htmlFor="floating_phone"
@@ -115,11 +161,13 @@ function Form() {
         <div className="relative z-0 mb-6 w-full group">
           <input
             type="text"
-            name="floating_adder"
-            id="floating_adder"
+            name="addr"
+            id="addr"
             className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
             placeholder=" "
             required=""
+            value={handleForm.addr}
+            onChange= {handleChange}
           />
           <label
             htmlFor="floating_adder"
@@ -131,11 +179,13 @@ function Form() {
         <div className="relative z-0 mb-6 w-1/6 group">
           <input
             type="text"
-            name="floating_Role"
-            id="floating_Role"
+            name="role"
+            id="role"
             className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
             placeholder=""
             required=""
+            value={handleForm.role}
+            onChange= {handleChange}
           />
           <label
             htmlFor="floating_Role"
@@ -150,20 +200,24 @@ function Form() {
             <label className="text-sm text-gray-800 dark:text-gray-600 top-3 ml-6">
               <input
                 type="radio"
+                name="status"
                 className="form-radio"
-                name="accountType"
-                value="personal"
+                value= "Public"
+                checked={ handleForm.status === "Public" }
+                onChange={handleradiochange}
               />
-              <span className="ml-2">Public</span>
+              <span>Public</span>
             </label>
             <label className="text-sm text-gray-800 dark:text-gray-600 top-3 ml-6">
               <input
                 type="radio"
+                name="status"
                 className="form-radio"
-                name="accountType"
-                value="busines"
+                value= "Favorite"
+                checked={ handleForm.status === "Favorite" }
+                onChange={handleradiochange}
               />
-              <span className="ml-2">Favorite</span>
+              <span>Favorite</span>
             </label>
           </div>
         </div>

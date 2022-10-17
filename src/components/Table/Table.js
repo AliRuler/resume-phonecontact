@@ -84,8 +84,8 @@ export function StatusPill({row,data}) {
       className={
         classNames(
           "px-3 py-1 uppercase leading-wide font-bold text-xs rounded-full shadow-sm",
-          data[row.id].status.startsWith("PUBLIC") ? "bg-blue-100 text-blue-800" : null,
-          data[row.id].status.startsWith("FAVORITE") ? "bg-green-100 text-green-800" : null,
+          data[row.id].status.startsWith("P") ? "bg-blue-100 text-blue-800" : null,
+          data[row.id].status.startsWith("F") ? "bg-green-100 text-green-800" : null,
         )
       }
       // onClick={changeValue} 

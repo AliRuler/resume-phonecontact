@@ -1,10 +1,15 @@
 import "./App.css"
 import React from 'react';
 import router from "./routes/routes";
+import ContactsProvider from "./context/contacts/contactsProvider";
 import { RouterProvider } from "react-router-dom";
 
   function App() {
-        return <RouterProvider router={router} />;
+        return (
+        <ContactsProvider>
+          <RouterProvider router={router} />;
+        </ContactsProvider>
+        )
         // 
         //     <Home>
 

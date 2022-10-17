@@ -3,12 +3,12 @@ import { ContactsReducer } from "./contacts.reducer";
 import {getData} from "../../db";
 
 export const ContactsContext = React.createContext({
-    contacts:getData,
+    contacts:[],
     dispatch:()=>{},
 });
 
 const ContactsProvider = ({children}) =>{
-    const [contacts,dispatch] = React.useReducer(ContactsReducer,[]);
+    const [contacts,dispatch] = React.useReducer(ContactsReducer,getData);
     return(
         <ContactsContext.Provider value={{
             contacts,

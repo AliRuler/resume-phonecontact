@@ -110,6 +110,6 @@ export const columns = [
     Header: "Update",
     accessor: "idContact",
     id: 'edit',
-    Cell: (accessor) => (<a href={`${accessor.row.original.name}`} >Edit</a>),
+    Cell: (accessor) => (<a href={`Edit/${accessor.row.original.name}`} >Edit</a>),
   },
 ];
