@@ -4,6 +4,8 @@ import { ChevronDoubleLeftIcon, ChevronLeftIcon, ChevronRightIcon, ChevronDouble
 import { Button, PageButton } from '../shared/Button'
 import { classNames } from '../shared/Utils'
 import { SortIcon, SortUpIcon, SortDownIcon } from '../shared/Icons'
+// import { contactsAction } from "../../context/contacts/contacts.reducer";
+import { contactsActionEdit, contactsActionRemove } from '../../toolkit/slices/contacts.slice'
 
 // Define a default UI for filtering
 function GlobalFilter({
@@ -72,15 +74,27 @@ export function SelectColumnFilter({
     </label>
   )
 }
-
-export function StatusPill({row,data}) {
-  // const changeValue = ()=>{
-  //   data[row.id].status==="PUBLIC"?data[row.id].status="FAVORITE":data[row.id].status="PUBLIC";
-  //   dispatch({type: contactsAction.Edit, payload: data[row.id]});
-  //   cell.render("Cell");
-  // }
+export function formButtons({row,dispach}){
+  const Remove= ()=>{
+    console.log(contactsActionRemove);
+    dispach(contactsActionRemove(row.original.name));
+  }
+  return(
+    <div>
+      <a className="inline-block mx-2 px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" href={`Edit/${row.original.name}`} >Edit</a>
+      <button type="button" onClick={Remove} className="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out">Delete</button>
+    
+    </div>
+    
+  )
+}
+export function StatusPill({row,dispach,data}) {
+  const Toggle = ()=>{
+    dispach(contactsActionEdit({key:"status",value:row.original.status==="Public"?"Favvorite":"Public",id:row.id}));
+  }
   return (
-    <span
+    <button
+      onClick={Toggle}
       className={
         classNames(
           "px-3 py-1 uppercase leading-wide font-bold text-xs rounded-full shadow-sm",
@@ -91,7 +105,7 @@ export function StatusPill({row,data}) {
       // onClick={changeValue} 
     >
       {data[row.id].status}
-    </span>
+    </button>
   );
 };
 
@@ -109,7 +123,7 @@ export function AvatarCell({ value, column, row }) {
   )
 }
 
-function Table({ columns,data, dispath}) {
+function Table({ columns,data, dispach}) {
   // Use the state and functions returned from useTable to build your UI
 
   const {
@@ -136,7 +150,7 @@ function Table({ columns,data, dispath}) {
   } = useTable({
     columns,
     data,
-    dispath
+    dispach
   },
     useFilters, // useFilters!
     useGlobalFilter,
@@ -215,7 +229,7 @@ function Table({ columns,data, dispath}) {
                             >
                               {cell.column.Cell.name === "defaultRenderer"
                                 ? <div className="text-sm text-gray-500">{cell.render('Cell')}</div>
-                                : cell.render('Cell',{data})
+                                : cell.render('Cell',{dispach, data})
                               }
                             </td>
                           )

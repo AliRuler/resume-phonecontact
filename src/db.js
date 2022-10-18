@@ -1,4 +1,5 @@
-import { AvatarCell, SelectColumnFilter, StatusPill } from './components/Table/Table'  // new
+'use strict';
+import { AvatarCell, SelectColumnFilter, StatusPill, formButtons } from './components/Table/Table'  // new
 
 export const getData = [
     {
@@ -71,7 +72,6 @@ export const getData = [
       action:"del",
       age: 24,
       imgUrl: 'https://avatars.dicebear.com/api/avataaars/3.svg',
-      idContact: 9,
     },
   ]
 
@@ -94,7 +94,7 @@ export const columns = [
   {
     Header: "Status",
     accessor: 'status',
-    Cell: ({row,data,dispatch, cell})=>StatusPill({row,data,dispatch,cell}),
+    Cell: StatusPill
   },
   {
     Header: "Age",
@@ -107,9 +107,10 @@ export const columns = [
     filter: 'includes',
   },
   {
-    Header: "Update",
+    Header: "Actions",
     accessor: "idContact",
     id: 'edit',
-    Cell: (accessor) => (<a href={`Edit/${accessor.row.original.name}`} >Edit</a>),
+    Cell: formButtons
+
   },
 ];

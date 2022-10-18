@@ -2,7 +2,6 @@ function ContactsReducer(state,action){
     const {type, payload} = action;
     switch(type){
         case contactsAction.Add:{
-            console.log(state)
             // const [item,index] = state.find(p => p.name === payload.name);
             // if (item){
             //     throw new Error ("This Contat is Already exist");
@@ -12,11 +11,11 @@ function ContactsReducer(state,action){
             // }
         }
         case contactsAction.Edit:{
-            return(state.map(item => item.id === payload.id? payload: item));
+            return(state.map(item => item.name === payload.name? payload: item));
 
         }
         case contactsAction.Remove:{
-            return(state.filter(item => item.id !== payload.id));
+            return(state.filter(item => item.name !== payload));
         }
         default: throw new Error("This action is not define");
     }
