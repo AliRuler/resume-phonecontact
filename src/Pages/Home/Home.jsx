@@ -7,7 +7,6 @@ import { useSelector, useDispatch } from "react-redux";
 const Home = () => {
     // const { contacts, dispatch } = useContext(ContactsContext);
     const contacts = useSelector((state) => {
-      console.log(state);
       return state.contacts;
     });
     const dispatch = useDispatch();

@@ -1,8 +1,7 @@
-'use strict';
 import "./App.css"
 import React from 'react';
 import router from "./routes/routes";
-import ContactsProvider from "./context/contacts/contactsProvider";
+// import ContactsProvider from "./context/contacts/contactsProvider";
 import { RouterProvider } from "react-router-dom";
 import store, {persistor} from "./toolkit/store";
 import { Provider } from "react-redux";
