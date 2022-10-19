@@ -15,7 +15,7 @@ const EditContact = () => {
         <div>
             <div className="bg-white relative shadow rounded-lg w-5/6 md:w-4/6  lg:w-3/6 xl:w-2/6 mx-auto">
                 <div className="flex justify-center">
-                        <img src="contact.imgUrl" alt="" className="rounded-full mx-auto absolute -top-20 w-32 h-32 shadow-md border-4 border-white transition duration-200 transform hover:scale-110"/>
+                        <img src={contact.imgUrl} alt="" className="rounded-full mx-auto absolute -top-20 w-32 h-32 shadow-md border-4 border-white transition duration-200 transform hover:scale-110"/>
                 </div>
                 
                 <div className="mt-16">
