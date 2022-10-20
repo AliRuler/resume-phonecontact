@@ -5,6 +5,7 @@ import { Button, PageButton } from '../shared/Button'
 import { classNames } from '../shared/Utils'
 import { SortIcon, SortUpIcon, SortDownIcon } from '../shared/Icons'
 // import { contactsAction } from "../../context/contacts/contacts.reducer";
+import { Link } from 'react-router-dom'
 import { contactsActionEdit, contactsActionRemove } from '../../toolkit/slices/contacts.slice'
 
 // Define a default UI for filtering
@@ -111,6 +112,7 @@ export function StatusPill({row,dispach,data}) {
 
 export function AvatarCell({ value, column, row }) {
   return (
+    <Link to={row.original.name}>
     <div className="flex items-center">
       <div className="flex-shrink-0 h-10 w-10">
         <img className="h-10 w-10 rounded-full" src={row.original[column.imgAccessor]} alt="" />
@@ -120,6 +122,7 @@ export function AvatarCell({ value, column, row }) {
         <div className="text-sm text-gray-500">{row.original[column.emailAccessor]}</div>
       </div>
     </div>
+    </Link>
   )
 }
 
