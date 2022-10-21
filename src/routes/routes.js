@@ -4,6 +4,7 @@ import {Layout} from "../components/Layout";
 import NewContact from "../Pages/Contacts/ShowContact";
 import EditContact from "../Pages/Contacts/EditContact"
 import ShowContact from "../Pages/Contacts/ShowContact";
+import Register from "../Pages/Contacts/Register/Register";
 const router = createBrowserRouter([
     {
       path: "/",
@@ -15,7 +16,7 @@ const router = createBrowserRouter([
         },
         {
           path: "Register",
-          element: <NewContact />,
+          element: <Register />,
         },
         {
           path: "Edit/:Namecontact",
