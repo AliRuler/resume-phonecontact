@@ -9,7 +9,7 @@ import { PersistGate } from "redux-persist/integration/react";
 
   function App() {
         return (
-          <Provider store={store}>
+          <Provider store={store} >
             <PersistGate persistor={persistor}>
               {/* <ContactsProvider> */}
                 <RouterProvider router={router} />;

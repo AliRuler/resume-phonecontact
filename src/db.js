@@ -1,4 +1,4 @@
-import { AvatarCell, SelectColumnFilter, StatusPill, formButtons } from './components/Table/Table'  // n
+import { AvatarCell, SelectColumnFilter,  formButtons } from './components/Table/Table'  // n
 export const getData = [
     {
       name: 'Jane Cooper',
@@ -84,19 +84,8 @@ export const columns = [
     accessor: 'address',
   },
   {
-    Header: "Status",
-    accessor: 'status',
-    Cell: StatusPill
-  },
-  {
     Header: "Age",
     accessor: 'age',
-  },
-  {
-    Header: "Role",
-    accessor: 'role',
-    Filter: SelectColumnFilter,  // new
-    filter: 'includes',
   },
   {
     Header: "Actions",
